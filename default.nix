@@ -26,7 +26,8 @@ in pkgs.stdenv.mkDerivation {
   src = pwd;
   installPhase = ''
     mkdir $out
-    echo "NODE_PATH=${node_modules}/node_modules ${pkgs.nodejs}/bin/node $src/serve.js" > $out/run.sh
+    cp -r $src/. $out
+    echo "NODE_PATH=${node_modules}/node_modules ${pkgs.nodejs}/bin/node ./serve.js" > $out/run.sh
     chmod +x $out/run.sh
   '';
 }
