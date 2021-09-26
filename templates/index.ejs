@@ -1,5 +1,97 @@
-<% for (const duck of Object.values(ducks)) { %>
-  <div class="duck">
-    <p class="duck--name"><%= duck.name %> (#<%= duck.id %>)</p>
-  </div>
-<% } %>
+<%- include('header') %>
+
+<%
+
+// Modified from https://stackoverflow.com/a/23352499/4608364
+function relTime(timeStamp) {
+  let now = new Date();
+  let secs = (now.getTime() - timeStamp) / 1000;
+  if (secs < 60) return Math.round(secs) + 'sec ago';
+  if (secs < 3600) return Math.round(secs / 60) + 'min ago';
+  if (secs <= 86400) return Math.round(secs / 3600) + 'hr ago';
+  {
+    const day = timeStamp.getDate();
+    const month = timeStamp.toDateString().match(/ [a-zA-Z]*/)[0].replace(" ", "");
+    const year = timeStamp.getFullYear() == now.getFullYear() ? "" : " " + timeStamp.getFullYear();
+    return 'on ' + month + " " + day + year;
+  }
+}
+
+ducks = Object.values(ducks).sort((a, b) => b.status.time - a.status.time);
+
+%>
+
+<div class="ducks">
+  <% for (const duck of ducks) { %>
+    <div class="duck --status-<%= duck.status.kind %>">
+      <img class="duck--image" src="<%= duck.image %>" />
+      <div class="duck--name"><span><%= duck.name %> (#<%= duck.id %>)</span></div>
+      <div class="duck--status">
+        <span>
+          <% switch (duck.status.kind) {
+             case 'new': %>
+               New duck!
+
+          <% break;
+             case 'found': %>
+               Found! By <a href="<%= duck.status.by.url %>"><%= duck.status.by.name %></a>
+
+          <% break;
+             case 'hidden': %>
+              Hidden by <a href="<%= duck.status.by.url %>"><%= duck.status.by.name %></a>
+              <br /><%= duck.status.hint %>
+
+          <% break;
+             } %>
+        </span>
+        <div class="duck--status--time"><%= relTime(duck.status.time) %></div>
+      </div>
+    </div>
+  <% } %>
+</div>
+
+<style>
+
+.ducks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 1em;
+}
+
+.duck {
+  display: grid;
+  grid-template-columns: 20% auto;
+  grid-template-rows: 2fr 3fr;
+
+  margin: 1em 0;
+  width: 100%;
+  max-width: 600px;
+  border: 1px solid grey;
+}
+
+.duck--image {
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
+  width: 100%;
+  padding: .5em;
+}
+
+.duck--name, .duck--status {
+  grid-column: 2 / 3;
+  display: flex;
+  align-items: center;
+  padding: 0 1em;
+}
+
+.duck--name {
+  grid-row: 1 / 2;
+}
+
+.duck--status {
+  grid-row: 2 / 3;
+  justify-content: space-between;
+}
+</style>
+
+<%- include('footer') %>

@@ -17,50 +17,73 @@ let ducks;
   ducks = {};
 
   for (const event of state.events) {
+
     switch (event.kind) {
 
       case 'duck born': {
-        const duck =
+        ducks[event.id] =
           { id: event.id
           , name: event.name
-          , image: `static/${event.id}.png`
+          // , image: `static/${event.id}.png`
+          , image: `https://placekitten.com/512/512?image=${Math.floor(Math.random() * 16) + 1}`
           , history: []
-          , status: null
+          , status:
+            { kind: 'new'
+            , time: event.time
+            }
           };
-        ducks[event.id] = duck;
+      } break;
+
+      case 'duck found': {
+        ducks[event.id].status =
+          { kind: 'found'
+          , by: event.by
+          , time: event.time
+          };
+      } break;
+
+      case 'duck hidden': {
+        ducks[event.id].status =
+          { kind: 'hidden'
+          , by: event.by
+          , hint: event.hint
+          , time: event.time
+          };
       } break;
 
       default:
         throw Error(`Unknown event kind '${event.kind}'`);
 
     }
+
+    ducks[event.id].history.push(event);
+
   }
 }
 
-let render;
+// Patch ejs.renderFile to be synchronous
+let renderFile;
 {
-  const templates = {};
-  render = function(name, data) {
-    if (!(name in templates)) {
-      const text = fs.readFileSync(`./templates/${name}.ejs`, 'utf-8');
-      templates[name] = ejs.compile(text);
-    }
-    const template = templates[name];
-    return template(data);
-  }
+  const result = Symbol('result');
+  // ejs.renderFile returns a Promise even though its implementation is synchronous.
+  // Dunno what's up with that. Patch that behaviour here.
+  ejs.promiseImpl = function(body) {
+    body(val => { this[result] = val; }, val => { throw val; });
+  };
+  renderFile = (...args) => ejs.renderFile(...args)[result];
 }
 
 const app = express();
 
 app.get('/', (req, res) => {
-  const html = render('index', { ducks });
+  const html = renderFile('./templates/index.ejs', { ducks });
   res.send(html);
 });
 
 app.get('/found/:duckId', (req, res) => {
   const duckId = req.params.duckId;
   const duck = duckId in ducks ? ducks[duckId] : null;
-  const html = render('found', { duckId, duck });
+  const html = renderFile('./templates/found.ejs', { duckId, duck });
   res.send(html);
 });
 
