@@ -21,13 +21,13 @@ let ducks;
 
       case 'duck born': {
         const duck =
-          { number: event.number
+          { id: event.id
           , name: event.name
-          , image: `static/${event.number}.png`
+          , image: `static/${event.id}.png`
           , history: []
           , status: null
           };
-        ducks[event.number] = duck;
+        ducks[event.id] = duck;
       } break;
 
       default:
