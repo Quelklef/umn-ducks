@@ -66,4 +66,8 @@ app.get('/found/:duckId', (req, res) => {
 
 app.use('/static', express.static('static'))
 
+app.use((req, res, next) => {
+  res.status(404).send("Page not found");
+});
+
 app.listen(process.env.UMN_DUCKS_PORT || 8017);
