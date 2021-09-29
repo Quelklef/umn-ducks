@@ -1,13 +1,28 @@
+<%- include('header', { socials: false }) %>
+
 <% if (duck == null) { %>
 
 <p>Unkown duck "<%= duckId %>". Did you spell it right?</p>
 
 <% } else { %>
 
-<p>You found <%= duck.name %>! (Duck #<%= duck.id %>)</p>
-<p><img src="<%= duck.image %>" /></p>
-<p>Welcome to the duck hunt!</p>
-<p>Please Tweet at or DM us <a href="https://twitter.com/ducks_umn">on Twitter</a>, or tag or DM us <a href="https://www.instagram.com/ducks.umn/">on Instagram</a>!</p>
-<p>Also see the <a href="/">duck listing</a>.</p>
+<div id="found">
+  <p>You found a duck!</p>
+  <%- include('duck', { duck }); %>
+  <% const tw_href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(`@ducks_umn I just found ${duck.name} (#${duck.id})`);
+     const ig_href = ''; %>
+  <p>Please join the duck hunt! <a href="<%= tw_href %>">Tweet at</a> or <a href="<%= ig_href %>">tag us on IG</a>.</p>
+  <p>Go <a href="/">home</a> for more ducks</p>
+</div>
+
+<style>
+
+#found {
+  text-align: center;
+}
+
+</style>
 
 <% } %>
+
+<%- include('footer') %>

@@ -29,7 +29,7 @@ let ducks;
           , history: []
           , status:
             { kind: 'new'
-            , time: event.time
+            , since: event.since
             }
           };
       } break;
@@ -38,7 +38,7 @@ let ducks;
         ducks[event.id].status =
           { kind: 'found'
           , by: event.by
-          , time: event.time
+          , since: event.since
           };
       } break;
 
@@ -47,7 +47,7 @@ let ducks;
           { kind: 'hidden'
           , by: event.by
           , hint: event.hint
-          , time: event.time
+          , since: event.since
           };
       } break;
 

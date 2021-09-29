@@ -1,0 +1,99 @@
+<%
+
+// Modified from https://stackoverflow.com/a/23352499/4608364
+function relTime(timeStamp) {
+  let now = new Date();
+  let secs = (now.getTime() - timeStamp) / 1000;
+  if (secs < 60) return Math.round(secs) + 'sec ago';
+  if (secs < 3600) return Math.round(secs / 60) + 'min ago';
+  if (secs <= 86400) return Math.round(secs / 3600) + 'hr ago';
+  {
+    const day = timeStamp.getDate();
+    const month = timeStamp.toDateString().match(/ [a-zA-Z]*/)[0].replace(" ", "");
+    const year = timeStamp.getFullYear() == now.getFullYear() ? "" : " " + timeStamp.getFullYear();
+    return month + " " + day + year;
+  }
+}
+
+%>
+
+<div class="duck --status-<%= duck.status.kind %>">
+  <img class="duck--image" src="<%= duck.image %>" />
+  <div class="duck--fullname">
+    <span>
+      <span class="duck--fullname--name"><%= duck.name %></span>
+      &nbsp;
+      <span class="duck--fullname--id">#<%= duck.id %></span>
+    </span>
+  </div>
+  <div class="duck--status">
+    <span>
+      <% switch (duck.status.kind) {
+         case 'new': %>
+         New duck!
+
+      <% break;
+         case 'found': %>
+           <a href="<%= duck.status.href %>">Found! By <%= duck.status.by %></a>
+
+      <% break;
+         case 'hidden': %>
+          <a href="<%= duck.status.href %>">Hidden by <%= duck.status.by %></a>: <span class="duck--hint"><%= duck.status.hint %></span>
+
+      <% break;
+         } %>
+    </span>
+    <div class="duck--status--since">since <%= relTime(duck.status.since) %></div>
+  </div>
+</div>
+
+<style>
+
+.duck {
+  display: grid;
+  grid-template-columns: 25% auto;
+  grid-template-rows: 1fr 1fr;
+
+  margin: 1em 0;
+  width: 100%;
+
+  background: #ffffd7;
+  border: 4px solid #fff299;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.duck--image {
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
+  width: 100%;
+  padding: .5em;
+}
+
+.duck--fullname, .duck--status {
+  grid-column: 2 / 3;
+  display: flex;
+  align-items: center;
+  padding: 0 1em;
+}
+
+.duck--fullname {
+  grid-row: 1 / 2;
+}
+.duck--fullname--name {
+  font-size: 1.5em;
+}
+.duck--fullname--id {
+  opacity: 0.4;
+  font-style: italic;
+}
+
+.duck--status {
+  grid-row: 2 / 3;
+  justify-content: space-between;
+}
+
+.duck--hint {
+  font-style: italic;
+}
+</style>
