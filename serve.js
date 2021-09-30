@@ -75,6 +75,9 @@ let renderFile;
 
 const app = express();
 
+// Don't do this at home, kids
+global.htmlInject = process.env.UMN_DUCKS_HTML_INJECT || '';
+
 app.get('/', (req, res) => {
   const html = renderFile('./templates/index.ejs', { ducks });
   res.send(html);
