@@ -1,6 +1,7 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="/static/global.css" />
   <%- htmlInject %>
 </head>
 
@@ -24,74 +25,3 @@
   </nav>
 
   <img id="background" src="/static/back.jpg" />
-
-<style>
-
-@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
-
-* {
-  box-sizing: border-box;
-  font-family: 'Lato', 'sans-serif';
-}
-
-body {
-  margin: 0;
-}
-
-#sheet {
-  background-color: white;
-  width: 750px;
-  padding: 0 75px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  margin: 0 auto;
-  min-height: 100vh;
-}
-
-nav {
-  margin: 50px 0;
-  text-align: center;
-}
-
-h1 {
-  font-size: 30px;
-  margin: 0;
-  display: inline-block;
-  position: relative;
-}
-#badge {
-  position: absolute;
-  transform: rotate(15deg);
-  top: 0;
-  right: -100px;
-  height: 70px;
-  opacity: 0.4;
-}
-
-h2 {
-  font-style: italic;
-  font-size: 14px;
-  font-weight: normal;
-}
-
-#socials {
-  margin-top: 30px;
-}
-#socials img {
-  height: 30px;
-  margin: 0 10px;
-}
-#socials img:hover {
-  transform: scale(1.1);
-}
-
-#background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  min-width: 100vw;
-  min-height: 100vh;
-  z-index: -1;
-  opacity: 0.08;
-}
-
-</style>
