@@ -7,13 +7,16 @@
 
 <body>
 
-<div id="sheet">
+<img id="background" src="/static/back.jpg" />
+<div id="sheet"></div>
 
-  <br />
+<br />
+
+<div id="content">
 
   <nav>
     <a href="/"><h1>UMN Duckhunt<img id="badge" src="/static/duck-1.png" /></h1></a>
-    <h2>No, we're not trying to get you to join a club</h2>
+    <h2>No, this isn't a club advertisement</h2>
 
     <% socials = typeof socials === 'undefined' ? true : socials; %>
     <% if (socials) { %>
@@ -23,5 +26,3 @@
       </div>
     <% } %>
   </nav>
-
-  <img id="background" src="/static/back.jpg" />
