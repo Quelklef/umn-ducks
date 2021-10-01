@@ -2,6 +2,7 @@ const express = require('express');
 const ejs = require('ejs');
 const fs = require('fs');
 
+
 let state;
 {
   try {
@@ -11,6 +12,7 @@ let state;
     else throw e;
   }
 }
+
 
 let ducks;
 {
@@ -24,8 +26,7 @@ let ducks;
         ducks[event.id] =
           { id: event.id
           , name: event.name
-          // , image: `static/${event.id}.png`
-          , image: `https://placekitten.com/512/512?image=${Math.floor(Math.random() * 16) + 1}`
+          , image: `/static/${event.id}.png`
           , history: []
           , status:
             { kind: 'new'
@@ -61,6 +62,7 @@ let ducks;
   }
 }
 
+
 // Patch ejs.renderFile to be synchronous
 let renderFile;
 {
@@ -73,10 +75,26 @@ let renderFile;
   renderFile = (...args) => ejs.renderFile(...args)[result];
 }
 
-const app = express();
 
 // Don't do this at home, kids
 global.htmlInject = process.env.UMN_DUCKS_HTML_INJECT || '';
+
+
+// "testing"
+{
+  console.log("Checking...");
+  renderFile('./templates/index.ejs', { ducks });
+  for (const duck of Object.values(ducks)) {
+    console.log(duck.id);
+    renderFile('./templates/duck.ejs', { duckId: duck.id, duck });
+    if (!fs.existsSync('./' + duck.image))
+      throw Error(`Missing image for ${duck.id}`);
+  }
+  console.log("Ok.");
+}
+
+
+const app = express();
 
 app.get('/', (req, res) => {
   const html = renderFile('./templates/index.ejs', { ducks });

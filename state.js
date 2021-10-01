@@ -1,110 +1,146 @@
+
+/*
+
+  { kind :: "duck born"
+  , since :: Date
+  , name :: String
+  , id :: String
+  }
+
+  { kind :: "duck found"
+  , since :: Date
+  , id :: String
+  , by :: String
+  , href :: String
+  }
+
+  { kind :: "duck hidden"
+  , since :: Date
+  , id :: String
+  , by :: String
+  , href :: String
+  , hint :: String
+  }
+
+*/
+
+function mkBorn(whenStr, name, id) {
+  return { kind: "duck born", since: new Date(whenStr), name, id };
+}
+
+function mkTime(date, time, tz) {
+  return `${date}T${time}${tz}`;
+}
+
+// minneapolis time zone
+const tz_mn = '-05:00';
+
+
 exports.default =
 {
   events: [
 
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Maristella' , id: '457', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Martin'     , id: '386', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Zdenka'     , id: '111', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Edythe'     , id: '200', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Njord'      , id: '698', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Fearghal'   , id: '814', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Hildræd'    , id: '819', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Javor'      , id: '122', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Frans'      , id: '088', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Ulrica'     , id: '190', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Tal'        , id: '973', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Hamo'       , id: '908', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Tabitha'    , id: '434', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Mathias'    , id: '368', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Tjeerd'     , id: '408', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Diya'       , id: '226', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Henryk'     , id: '777', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Godofredo'  , id: '199', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Suero'      , id: '967', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Themba'     , id: '109', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Thabani'    , id: '760', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Lėja'       , id: '397', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Walchelin'  , id: '009', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Bayani'     , id: '439', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Shirin'     , id: '220', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Blanche'    , id: '641', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Abdülhamit' , id: '635', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Yehiel'     , id: '120', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Leofwine'   , id: '219', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Bharat'     , id: '150', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Trajan'     , id: '052', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Gulrukh'    , id: '978', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Noemi'      , id: '119', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Walter'     , id: '869', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Domitianus' , id: '059', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Sylvaine'   , id: '818', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Goma'       , id: '502', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Olamilekan' , id: '414', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Bohdan'     , id: '776', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Erika'      , id: '796', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Leigong'    , id: '223', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Kevork'     , id: '166', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Aloysius'   , id: '191', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Ayanda'     , id: '949', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Raimo'      , id: '637', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Olivia'     , id: '744', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Desideria'  , id: '481', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Simon'      , id: '487', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Abhay'      , id: '566', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Bróðir'     , id: '844', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Isabella'   , id: '465', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Soterios'   , id: '564', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Gilbert'    , id: '228', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Dilşad'     , id: '388', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Rajiv'      , id: '924', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Aristides'  , id: '853', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Diyar'      , id: '460', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Cadfan'     , id: '735', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Homeros'    , id: '581', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Girisha'    , id: '431', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Livianus'   , id: '371', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Lalitha'    , id: '186', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Ji-Hye'     , id: '713', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Maximilian' , id: '681', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Iúile'      , id: '707', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Saif al-Din', id: '243', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Loís'       , id: '647', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'José'       , id: '661', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Antipatros' , id: '351', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Horácio'    , id: '882', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Hirsh'      , id: '938', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Līva'       , id: '634', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Hilda'      , id: '687', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Caesonius'  , id: '673', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Axel'       , id: '660', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Lea'        , id: '415', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Raju'       , id: '105', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Qays'       , id: '093', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Shahriar'   , id: '011', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Miroslava'  , id: '291', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Albin'      , id: '358', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Enki'       , id: '572', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Maud'       , id: '552', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Eulália'    , id: '231', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Valeriy'    , id: '167', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Clopas'     , id: '312', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Mahamadou'  , id: '663', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Samanta'    , id: '880', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Satish'     , id: '657', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Mehr'       , id: '598', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Roldán'     , id: '820', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Hartwig'    , id: '400', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Naveen'     , id: '588', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Muiredach'  , id: '636', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Monet'      , id: '366', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Rajendra'   , id: '217', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Gunnbjǫrg'  , id: '409', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Hienadz'    , id: '583', },
-{ since: new Date('2021-09-22 11:08:00'), kind: 'duck born', name: 'Milo'       , id: '916', },
-{ since: new Date('2021-09-20 11:08:00'), kind: 'duck born', name: 'Linus'      , id: '666', },
+mkBorn( mkTime('2021-09-30', '19:17:04', tz_mn), 'Maristella', '457' ),
+mkBorn( mkTime('2021-09-30', '19:17:03', tz_mn), 'Martin'    , '386' ),
+mkBorn( mkTime('2021-09-30', '19:17:02', tz_mn), 'Zdenka'    , '111' ),
+mkBorn( mkTime('2021-09-30', '19:17:01', tz_mn), 'Edythe'    , '200' ),
+mkBorn( mkTime('2021-09-30', '19:17:00', tz_mn), 'Njord'     , '698' ),
 
-{ since: new Date('2021-09-24 11:08:00'), kind: 'duck found', id: '916', by: 'quelklef', href: 'https://google.com', },
-{ since: new Date('2021-09-23 11:08:00'), kind: 'duck hidden', id: '583', by: 'quelklef', href: 'https://google.com', hint: 'something' },
+// Fearghal    #814
+// Hildræd     #819
+// Javor       #122
+// Frans       #088
+// Ulrica      #190
+// Tal         #973
+// Hamo        #908
+// Tabitha     #434
+// Mathias     #368
+// Tjeerd      #408
+// Diya        #226
+// Henryk      #777
+// Godofredo   #199
+// Suero       #967
+// Themba      #109
+// Thabani     #760
+// Lėja        #397
+// Walchelin   #009
+// Bayani      #439
+// Shirin      #220
+// Blanche     #641
+// Abdülhamit  #635
+// Yehiel      #120
+// Leofwine    #219
+// Bharat      #150
+// Trajan      #052
+// Gulrukh     #978
+// Noemi       #119
+// Walter      #869
+// Domitianus  #059
+// Sylvaine    #818
+// Goma        #502
+// Olamilekan  #414
+// Bohdan      #776
+// Erika       #796
+// Leigong     #223
+// Kevork      #166
+// Aloysius    #191
+// Ayanda      #949
+// Raimo       #637
+// Olivia      #744
+// Desideria   #481
+// Simon       #487
+// Abhay       #566
+// Bróðir      #844
+// Isabella    #465
+// Soterios    #564
+// Gilbert     #228
+// Dilşad      #388
+// Rajiv       #924
+// Aristides   #853
+// Diyar       #460
+// Cadfan      #735
+// Homeros     #581
+// Girisha     #431
+// Livianus    #371
+// Lalitha     #186
+// Ji-Hye      #713
+// Maximilian  #681
+// Iúile       #707
+// Saif al-Din #243
+// Loís        #647
+// José        #661
+// Antipatros  #351
+// Horácio     #882
+// Hirsh       #938
+// Līva        #634
+// Hilda       #687
+// Caesonius   #673
+// Axel        #660
+// Lea         #415
+// Raju        #105
+// Qays        #093
+// Shahriar    #011
+// Miroslava   #291
+// Albin       #358
+// Enki        #572
+// Maud        #552
+// Eulália     #231
+// Valeriy     #167
+// Clopas      #312
+// Mahamadou   #663
+// Samanta     #880
+// Satish      #657
+// Mehr        #598
+// Roldán      #820
+// Hartwig     #400
+// Naveen      #588
+// Muiredach   #636
+// Monet       #366
+// Rajendra    #217
+// Gunnbjǫrg   #409
+// Hienadz     #583
+// Milo        #916
+// Linus       #666
 
   ]
 }
