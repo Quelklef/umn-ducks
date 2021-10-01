@@ -128,3 +128,7 @@ h2 {
 #found {
   text-align: center;
 }
+#found > p {
+  font-size: 1.2em;
+  line-height: 1.8em;
+}

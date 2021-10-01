@@ -9,10 +9,10 @@
 <div id="found">
   <p>You found a duck!</p>
   <%- include('duck', { duck }); %>
-  <% const tw_href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(`@ducks_umn I just found ${duck.name} (#${duck.id})`);
-     const ig_href = ''; %>
-  <p>Please join the duck hunt! <a href="<%= tw_href %>">Tweet at</a> or <a href="<%= ig_href %>">tag us on IG</a>.</p>
-  <p>Go <a href="/">home</a> for more ducks</p>
+  <% const tw_href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(`@ducks_umn I just found ${duck.name} (#${duck.id})!`);
+     const ig_href = 'https://instagram.com/ducks.umn'; %>
+  <p>Please join the duck hunt! <a target="_blank" href="<%= tw_href %>">Tweet at us</a> or <a target="_blank" href="<%= ig_href %>">tag us on IG</a>.</p>
+  <p><a href="/">Current duckhunt status</a></p>
 </div>
 
 <% } %>
