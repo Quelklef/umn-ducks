@@ -24,12 +24,16 @@
 
 */
 
-function mkBorn(whenStr, name, id) {
-  return { kind: "duck born", since: new Date(whenStr), name, id };
+function mkBorn(time, name, id) {
+  return { kind: "duck born", since: time, name, id };
+}
+
+function mkFound(time, id, { by, hint, href }) {
+  return { kind: "duck hidden", since: time, id, by, href, hint };
 }
 
 function mkTime(date, time, tz) {
-  return `${date}T${time}${tz}`;
+  return new Date(`${date}T${time}${tz}`);
 }
 
 // minneapolis time zone
@@ -45,6 +49,8 @@ mkBorn( mkTime('2021-09-30', '19:17:03', tz_mn), 'Martin'    , '386' ),
 mkBorn( mkTime('2021-09-30', '19:17:02', tz_mn), 'Zdenka'    , '111' ),
 mkBorn( mkTime('2021-09-30', '19:17:01', tz_mn), 'Edythe'    , '200' ),
 mkBorn( mkTime('2021-09-30', '19:17:00', tz_mn), 'Njord'     , '698' ),
+
+mkFound( mkTime('2021-10-01', '14:49:00', tz_mn), '698', { by: 'delanna.do', hint: "Pretty sure that 2+2 = 5", href: "https://www.instagram.com/p/CUf6YkhpXkbuLbWqzrg_EO1syTtutsUKy2dMkk0/" } ),
 
 // Fearghal    #814
 // Hildræd     #819
