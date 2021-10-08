@@ -51,6 +51,8 @@ mkBorn( mkTime('2021-09-30', '19:17:01', tz_mn), 'Edythe'    , '200' ),
 mkBorn( mkTime('2021-09-30', '19:17:00', tz_mn), 'Njord'     , '698' ),
 
 mkFound( mkTime('2021-10-01', '14:49:00', tz_mn), '698', { by: 'delanna.do', hint: "Pretty sure that 2+2 = 5", href: "https://www.instagram.com/p/CUf6YkhpXkbuLbWqzrg_EO1syTtutsUKy2dMkk0/" } ),
+mkFound( mkTime('2021-10-04', '15:26:00', tz_mn), '200', { by: 'Ruibing Zhang', hint: "G besides A", href: null }),
+mkFound( mkTime('2021-10-04', '15:26:00', tz_mn), '386', { by: 'Ruibing Zhang', hint: "Stairs by V", href: null }),
 
 // Fearghal    #814
 // Hildræd     #819

@@ -38,8 +38,12 @@ function relTime(timeStamp) {
 
       <% break;
          case 'hidden': %>
-          <a href="<%= duck.status.href %>">Hidden by <%= duck.status.by %></a>: <span class="duck--hint"><%= duck.status.hint %></span>
-
+          <% if (duck.status.href) { %>
+            <a href="<%= duck.status.href %>">Hidden</a>
+          <% } else { %>
+            Hidden
+          <% } %>
+          by <%= duck.status.by %>: <span class="duck--hint"><%= duck.status.hint %></span>
       <% break;
          } %>
 
