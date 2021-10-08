@@ -26,7 +26,7 @@ let ducks;
         ducks[event.id] =
           { id: event.id
           , name: event.name
-          , image: `/static/${event.id}.png`
+          , image: `/static/ducks/${event.id}.png`
           , history: []
           , status:
             { kind: 'new'
