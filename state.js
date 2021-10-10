@@ -28,7 +28,11 @@ function mkBorn(time, name, id) {
   return { kind: "duck born", since: time, name, id };
 }
 
-function mkFound(time, id, { by, hint, href }) {
+function mkFound(time, id, { by, href }) {
+  return { kind: "duck found", since: time, id, by, href };
+}
+
+function mkHidden(time, id, { by, hint, href }) {
   return { kind: "duck hidden", since: time, id, by, href, hint };
 }
 
@@ -50,9 +54,14 @@ mkBorn( mkTime('2021-09-30', '19:17:02', tz_mn), 'Zdenka'    , '111' ),
 mkBorn( mkTime('2021-09-30', '19:17:01', tz_mn), 'Edythe'    , '200' ),
 mkBorn( mkTime('2021-09-30', '19:17:00', tz_mn), 'Njord'     , '698' ),
 
-mkFound( mkTime('2021-10-01', '14:49:00', tz_mn), '698', { by: 'delanna.do', hint: "Pretty sure that 2+2 = 5", href: "https://www.instagram.com/p/CUf6YkhpXkbuLbWqzrg_EO1syTtutsUKy2dMkk0/" } ),
-mkFound( mkTime('2021-10-04', '15:26:00', tz_mn), '200', { by: 'Ruibing Zhang', hint: "G besides A", href: null }),
-mkFound( mkTime('2021-10-04', '15:26:00', tz_mn), '386', { by: 'Ruibing Zhang', hint: "Stairs by V", href: null }),
+mkHidden( mkTime('2021-10-01', '14:49:00', tz_mn), '698', { by: 'delanna.do', hint: "Pretty sure that 2+2 = 5", href: "https://www.instagram.com/p/CUf6YkhpXkbuLbWqzrg_EO1syTtutsUKy2dMkk0/" } ),
+
+mkHidden( mkTime('2021-10-04', '15:26:00', tz_mn), '200', { by: 'Ruibing Zhang', hint: "G besides A", href: null }),
+
+mkHidden( mkTime('2021-10-04', '15:26:00', tz_mn), '386', { by: 'Ruibing Zhang', hint: "Stairs by V", href: null }),
+
+// no associated picture
+mkHidden( mkTime('2021-10-08', '15:51:00', tz_mn), '457', { by: 'Harper', hint: "I'm reading a math book in a cozy little corner", href: null }),
 
 // Fearghal    #814
 // Hildræd     #819
