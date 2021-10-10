@@ -1,5 +1,7 @@
 <%- include('header') %>
 
+<p>Hidden ducks have hints. Go find them! Yes, that means you, reader who has no idea what's going on. Welcome!</p>
+
 <% ducks = Object.values(ducks).sort((a, b) => b.status.since - a.status.since); %>
 
 <div class="ducks">
