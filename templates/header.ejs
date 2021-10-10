@@ -16,7 +16,17 @@
 
   <nav>
     <a href="/"><h1>UMN Duckhunt<img id="badge" src="/static/duck-1.png" /></h1></a>
-    <h2>No, this isn't a club advertisement</h2>
+    <%
+      const subs =
+        [ "No, this isn't a club advertisement"
+        , "Read some hints, find some ducks"
+        , "Quack quack, motherf**ker"
+        , "Very extremely unofficial"
+        ];
+
+      const sub = subs[Math.floor(Math.random() * subs.length)];
+    %>
+    <h2><%= sub %></h2>
 
     <% socials = typeof socials === 'undefined' ? true : socials; %>
     <% if (socials) { %>
